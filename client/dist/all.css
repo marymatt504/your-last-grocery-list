@@ -1,0 +1,16 @@
+h1, h2, p {
+  color: #323339;
+}
+
+p {
+  font-size: 100%;
+}
+
+h1 {
+  font-size: 120%;
+}
+
+h2 {
+  font-size: 110%;
+}
+
