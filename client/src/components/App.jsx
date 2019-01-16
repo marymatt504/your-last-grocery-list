@@ -15,8 +15,6 @@ class App extends React.Component {
   render() {
     if (this.state.view === 'homepage') {
       return <HomePage />
-    } else if (this.state === 'login') {
-      return <LoginModal />
     }
   }
 }
