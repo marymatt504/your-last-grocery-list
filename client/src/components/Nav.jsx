@@ -30,7 +30,13 @@ class Nav extends React.Component {
   render() {
     return (
       <div className='navBar'>
-        <div className='logo'><div>Your Last</div><div>Grocery List</div></div>
+        <div className='logo'>
+          <img src="https://s3-us-west-1.amazonaws.com/your-last-grocery-list/grocery.png" alt="grocery bag icon"/>
+          <div>
+            <div>Your Last</div>
+            <div>Grocery List</div>
+          </div>
+        </div>
         <form className='loginForm' onSubmit={this.handleSubmit}>
           <label className='formComponent'>
             <input onClick={this.clearInput} name='email' type="text" value={this.state.email} onChange={this.handleChange} />

@@ -18,8 +18,15 @@ p, .label {
 
 .logo {
   font-size: 150%;
-  color: white;
+  color: honeydew;
   padding: 1%;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo img {
+  width: 10%;
+  height: 10%;
 }
 
 h2 {
@@ -65,4 +72,8 @@ h2 {
   background-color: honeydew;
   max-width: 45%;
   border-radius: 1%;
+}
+
+.italic {
+  font-style: italic;
 }
