@@ -18,7 +18,17 @@ class SignUpForm extends React.Component {
   }
 
   handleSubmit(event) {
-
+    axios.post('/users', {
+      username: this.state.email,
+      password: this.state.password
+    })
+      .then(function (response) {
+        console.log(response, 'user created!');
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('username already exists');
+      });
     event.preventDefault();
   }
 
