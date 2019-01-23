@@ -30,35 +30,19 @@ client.connect();
 
 //***** DATABASE METHODS ***/
 
-// const getAll = (actor, callback) => {
+const addUser = (username, password, callback) => {
+  const query = {
+    text: 'INSERT INTO users (username, password) VALUES ($1, $2)',
+    values: [username, password]
+  };
 
-//   const query = {
-//     text: 'SELECT * FROM movies WHERE actor = $1',
-//     values: [actor],
-//   };
+  client.query(query, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  })
+};
 
-//   client.query(query, (error, results) => {
-//     if (error) {
-//       callback(error);
-//     } else {
-//       callback(null, results);
-//     }
-//   });
-// };
-
-// const cacheMovies = (title, year, image, actor, callback) => {
-//   const query = {
-//     text: 'INSERT INTO movies(title, year, image, actor) VALUES($1, $2, $3, $4)',
-//     values: [title, year, image, actor],
-//   };
-
-//   client.query(query, (error, results) => {
-//     if (error) {
-//       callback(error);
-//     } else {
-//       callback(null, results);
-//     }
-//   });
-
-// };
-// module.exports = { getAll, cacheMovies };
+module.exports = { addUser };

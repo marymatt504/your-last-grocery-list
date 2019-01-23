@@ -1,4 +1,5 @@
 import React from 'react';
+const axios = require('axios');
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class SignUpForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+
     event.preventDefault();
   }
 
