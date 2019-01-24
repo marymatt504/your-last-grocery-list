@@ -24,9 +24,9 @@ class SignUpForm extends React.Component {
       password: this.state.password
     })
       .then(function (response) {
-        console.log(response, 'user created!');
-        // need to get back from creating of the user, the userId
-        // this.props.updateUserId();
+        // console.log('user created! user_id is', response.data.rows[0].id);
+        let user_id = response.data.rows[0].id;
+        this.props.updateUserId(user_id);
       })
       .then(() => {
         this.props.updateView('listDashboard');
