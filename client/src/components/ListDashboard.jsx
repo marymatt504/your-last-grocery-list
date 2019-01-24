@@ -6,12 +6,12 @@ import Nav from './Nav.jsx';
 // on click of list, change view to List
 // on click of create new list, change view to CreateList
 
-let ListDashboard = (props) => (
+let ListDashboard = props => (
   <div>
     <Nav />
     Will render existing list names here -- on click will take to listView
     <div>Don't have a list yet for where you want to shop?</div>
-    <button onClick={console.log('will update view')}>Click here to create a list for a new store.</button>
+    <button onClick={props.updateView.bind(this, 'createList')}>Create a list for a new store.</button>
   </div>
 );
 

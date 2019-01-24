@@ -2,6 +2,7 @@
 import React from 'react';
 import HomePage from './HomePage.jsx';
 import ListDashboard from './ListDashboard.jsx';
+import CreateListForm from './CreateListForm.jsx';
 import LoginModal from './LoginModal.jsx';
 
 class App extends React.Component {
@@ -10,7 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: 'homepage',
-      user_id: 0
+      user_id: 0,
+      list_id: 0
     }
     this.updateUserId = this.updateUserId.bind(this);
     this.updateView = this.updateView.bind(this);
@@ -30,11 +32,12 @@ class App extends React.Component {
       return <HomePage updateUserId={this.updateUserId} updateView={this.updateView} />
     }
     if (this.state.view === 'listDashboard') {
-      return <ListDashboard />
+      return <ListDashboard updateView={this.updateView} />
     }
-    // if (this.state.view === 'createList') {
-    //   return <CreateList />
-    // }
+    if (this.state.view === 'createList') {
+      return <CreateListForm user_id={this.state.user_id} updateView={this.updateView} />
+    }
+
     // if (this.state.view === 'listView') {
     //   return <List />
     // }

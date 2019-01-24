@@ -40,7 +40,7 @@ class SignUpForm extends React.Component {
 
   render() {
     return (
-      <form className='signUpForm' onSubmit={this.handleSubmit}>
+      <form className='form' onSubmit={this.handleSubmit}>
         <h2>Create an account</h2>
         <label className='label'>
           <div>

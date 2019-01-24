@@ -58,11 +58,11 @@ h2 {
 }
 
 /* homePage */
-.intro, .signUpForm {
+.intro, .form {
   margin: 3%;
 }
 
-.signUpForm {
+.form {
   border-color: #323339;
   border-style: solid;
   padding-top: 0%;
