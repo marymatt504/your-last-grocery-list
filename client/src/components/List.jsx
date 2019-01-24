@@ -1,9 +1,9 @@
-// to be passedDown: list_id & store_name
-
 
 import React from 'react';
 const axios = require('axios');
 import Nav from './Nav.jsx';
+import ItemsToBuy from './ItemsToBuy.jsx';
+import PreviouslyPurchased from './PreviouslyPurchased.jsx';
 
 class List extends React.Component {
 
@@ -26,12 +26,7 @@ class List extends React.Component {
 
   handleSubmit(event) {
 
-    // create a new list with the store_name and user_id (from this.props)
-    // get the new listId and update it in the App state 
-    // updateView to listView
-
-
-    axios.post('/lists', {
+    axios.post('/items', {
       store_name: this.state.store_name,
       user_id: this.props.user_id
     })
@@ -55,16 +50,20 @@ class List extends React.Component {
     return (
       <div>
         <Nav />
-        <form className='form' onSubmit={this.handleSubmit}>
-          <h2>{`${this.props.capitalize(this.props.store_name)} Shopping List`}</h2>
-          <label className='label'>
-            <div>
-              {`Items to Purchase: `}
-              <input name='store_name' type="text" value={this.state.store_name} onChange={this.handleChange} />
-            </div>
-          </label>
-          <input type="submit" value="Start adding items" />
-        </form>
+        <div className='heading'>{`${this.props.capitalize(this.props.store_name)} Shopping List`}</div>
+        <div className='listLogicContainer'>
+          <ItemsToBuy />
+          <PreviouslyPurchased />
+          <form className='listLogicModule' onSubmit={this.handleSubmit}>
+            <label className='label'>
+              <div>
+                {`Items to Purchase: `}
+                <input name='store_name' type="text" value={this.state.store_name} onChange={this.handleChange} />
+              </div>
+            </label>
+            <input type="submit" value="Start adding items" />
+          </form>
+        </div>
       </div>
     );
   }

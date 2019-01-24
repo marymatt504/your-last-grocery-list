@@ -34,6 +34,14 @@ h2 {
   color: #F26968;
 }
 
+.heading {
+  padding-left: 3%;
+  padding-top: 2%;
+  font-size: 110%;
+  color: #F26968;
+  font-weight: bold;
+}
+
 .navBar {
   background-color: #323339;
   width: 100%;
@@ -72,6 +80,30 @@ h2 {
   background-color: honeydew;
   max-width: 45%;
   border-radius: 1%;
+}
+
+/*List Component */
+
+.listLogicContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2%;
+}
+
+.listLogicModule {
+  border-color: #323339;
+  border-style: solid;
+  padding-top: 0%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: honeydew;
+  /* max-width: 45%; */
+  border-radius: 1%;
+  flex-grow: 1;
+  margin: 1.5%;
 }
 
 .italic {
