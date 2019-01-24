@@ -3,7 +3,7 @@ import React from 'react';
 import HomePage from './HomePage.jsx';
 import ListDashboard from './ListDashboard.jsx';
 import CreateListForm from './CreateListForm.jsx';
-import LoginModal from './LoginModal.jsx';
+import List from './List.jsx';
 
 class App extends React.Component {
 
@@ -37,10 +37,9 @@ class App extends React.Component {
     if (this.state.view === 'createList') {
       return <CreateListForm user_id={this.state.user_id} updateView={this.updateView} />
     }
-
-    // if (this.state.view === 'listView') {
-    //   return <List />
-    // }
+    if (this.state.view === 'listView') {
+      return <List />
+    }
   }
 }
 

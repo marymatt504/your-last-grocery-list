@@ -1,13 +1,19 @@
+// to be passedDown: list_id (will fetch storename)
+
+
 import React from 'react';
 const axios = require('axios');
 import Nav from './Nav.jsx';
 
-class CreateListForm extends React.Component {
+class List extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      store_name: '',
+      // prioritize constant time lookup by itemId 
+      items: {
+        0: { name: '', need_to_buy: false, category: '' }
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -63,4 +69,4 @@ class CreateListForm extends React.Component {
   }
 }
 
-export default CreateListForm;
+export default List;

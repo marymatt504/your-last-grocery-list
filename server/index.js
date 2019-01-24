@@ -6,11 +6,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
-
-
 app.post('/users', (req, res) => {
-
-  console.log('req.body.username', req.body.username);
   let { username, password } = req.body;
 
   db.addUser(username, password, (err, results) => {
@@ -21,6 +17,18 @@ app.post('/users', (req, res) => {
     }
   });
 
+});
+
+app.post('/lists', (req, res) => {
+  let { user_id, store_name } = req.body;
+
+  db.addList(user_id, store_name, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(201).send(results);
+    }
+  })
 });
 
 // app.get('/items', function (req, res) {

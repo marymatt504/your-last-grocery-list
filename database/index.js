@@ -28,21 +28,36 @@ const client = new Client({
 });
 client.connect();
 
-//***** DATABASE METHODS ***/
+//***** DATABASE METHODS **********************************************/
 
 const addUser = (username, password, callback) => {
-  const query = {
+  const queryStr = {
     text: 'INSERT INTO users (username, password) VALUES ($1, $2)',
     values: [username, password]
   };
 
-  client.query(query, (error, results) => {
+  client.query(queryStr, (error, results) => {
     if (error) {
       callback(error);
     } else {
       callback(null, results);
     }
-  })
+  });
 };
 
-module.exports = { addUser };
+const addList = (user_id, store_name, callback) => {
+  const queryStr = {
+    text: `INSERT INTO lists (user_id, store_name) VALUES ($1, $2) RETURNING id`,
+    values: [user_id, store_name]
+  };
+
+  client.query(queryStr, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+module.exports = { addUser, addList };
