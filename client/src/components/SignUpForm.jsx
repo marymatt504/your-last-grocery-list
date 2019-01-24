@@ -2,6 +2,7 @@ import React from 'react';
 const axios = require('axios');
 
 class SignUpForm extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,11 +25,16 @@ class SignUpForm extends React.Component {
     })
       .then(function (response) {
         console.log(response, 'user created!');
+        // need to get back from creating of the user, the userId
+        // this.props.updateUserId();
+      })
+      .then(() => {
+        this.props.updateView('listDashboard');
       })
       .catch(function (error) {
         console.log(error);
-        alert('username already exists');
       });
+
     event.preventDefault();
   }
 

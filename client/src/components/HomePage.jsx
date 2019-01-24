@@ -11,7 +11,7 @@ let HomePage = (props) => (
       <h2>We've made it easy for you.</h2>
       <p><span className='italic'>Your Last Grocery List</span> makes suggestions based on your old grocery lists. No more wracking your brain. Quickly add the items you need and get shopping!</p>
     </div>
-    <SignUpForm />
+    <SignUpForm updateUserId={props.updateUserId} updateView={props.updateView} />
   </div>
 );
 
