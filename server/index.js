@@ -13,13 +13,15 @@ app.post('/users', (req, res) => {
     if (err) {
       res.sendStatus(500);
     } else {
-      res.sendStatus(201);
+      res.status(201).send(results);
     }
   });
 
 });
 
 app.post('/lists', (req, res) => {
+
+  console.log('req.body', req.body);
   let { user_id, store_name } = req.body;
 
   db.addList(user_id, store_name, (err, results) => {

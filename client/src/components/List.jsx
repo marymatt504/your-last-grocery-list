@@ -36,13 +36,13 @@ class List extends React.Component {
       user_id: this.props.user_id
     })
       .then(function (response) {
-        console.log(response, 'list created!');
+        console.log('list created! here is the list_id', respone.rows[0].id);
         // need to get back from creating of the user, the userId
         // this.props.updateUserId();
       })
-      .then(() => {
-        this.props.updateView('listView');
-      })
+      // .then(() => {
+      //   this.props.updateView('listView');
+      // })
       .catch(function (error) {
         console.log(error);
       });

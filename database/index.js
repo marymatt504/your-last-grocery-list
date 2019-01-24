@@ -32,7 +32,7 @@ client.connect();
 
 const addUser = (username, password, callback) => {
   const queryStr = {
-    text: 'INSERT INTO users (username, password) VALUES ($1, $2)',
+    text: 'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id',
     values: [username, password]
   };
 
