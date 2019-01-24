@@ -23,8 +23,7 @@ class SignUpForm extends React.Component {
       username: this.state.email,
       password: this.state.password
     })
-      .then(function (response) {
-        // console.log('user created! user_id is', response.data.rows[0].id);
+      .then(response => {
         let user_id = response.data.rows[0].id;
         this.props.updateUserId(user_id);
       })

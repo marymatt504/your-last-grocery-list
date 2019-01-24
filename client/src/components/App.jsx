@@ -12,19 +12,37 @@ class App extends React.Component {
     this.state = {
       view: 'homepage',
       user_id: 0,
-      list_id: 0
+      list_id: 0,
+      store_name: ''
     }
     this.updateUserId = this.updateUserId.bind(this);
+    this.updateListId = this.updateListId.bind(this);
     this.updateView = this.updateView.bind(this);
+    this.updateStoreName = this.updateStoreName.bind(this);
   }
 
   updateUserId(id) {
     this.setState({ user_id: id });
+  }
 
+  updateListId(id) {
+    this.setState({ list_id: id });
   }
 
   updateView(view) {
     this.setState({ view });
+  }
+
+  updateStoreName(store_name) {
+    this.setState({ store_name });
+  }
+
+  capitalize(str) {
+    let arrOfWords = str.split(' ');
+    arrOfWords = arrOfWords.map(word => {
+      return word[0].toUpperCase() + word.slice(1);
+    });
+    return arrOfWords.join(' ');
   }
 
   render() {
@@ -35,10 +53,10 @@ class App extends React.Component {
       return <ListDashboard updateView={this.updateView} />
     }
     if (this.state.view === 'createList') {
-      return <CreateListForm user_id={this.state.user_id} updateView={this.updateView} />
+      return <CreateListForm user_id={this.state.user_id} updateListId={this.updateListId} updateStoreName={this.updateStoreName} updateView={this.updateView} />
     }
     if (this.state.view === 'listView') {
-      return <List />
+      return <List store_name={this.state.store_name} list_id={this.state.list_id} capitalize={this.capitalize} />
     }
   }
 }

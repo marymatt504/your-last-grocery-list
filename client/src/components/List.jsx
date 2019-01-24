@@ -1,4 +1,4 @@
-// to be passedDown: list_id (will fetch storename)
+// to be passedDown: list_id & store_name
 
 
 import React from 'react';
@@ -51,14 +51,15 @@ class List extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <Nav />
         <form className='form' onSubmit={this.handleSubmit}>
-          <h2>Create a list for a new store</h2>
+          <h2>{`${this.props.capitalize(this.props.store_name)} Shopping List`}</h2>
           <label className='label'>
             <div>
-              {`Store Name: `}
+              {`Items to Purchase: `}
               <input name='store_name' type="text" value={this.state.store_name} onChange={this.handleChange} />
             </div>
           </label>

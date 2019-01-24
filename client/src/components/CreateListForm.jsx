@@ -20,23 +20,19 @@ class CreateListForm extends React.Component {
 
   handleSubmit(event) {
 
-    // create a new list with the store_name and user_id (from this.props)
-    // get the new listId and update it in the App state 
-    // updateView to listView
-
-
     axios.post('/lists', {
-      store_name: this.state.store_name,
+      store_name: this.state.store_name.toLowerCase(),
       user_id: this.props.user_id
     })
-      .then(function (response) {
-        console.log('list created! here is the list_id', response.rows[0].id);
-        // need to get back from creating of the user, the userId
-        // this.props.updateUserId();
+      .then(response => {
+        let list_id = response.data.rows[0].id;
+        console.log('list created! id:', list_id);
+        this.props.updateListId(list_id);
+        this.props.updateStoreName(this.state.store_name);
       })
-      // .then(() => {
-      //   this.props.updateView('listView');
-      // })
+      .then(() => {
+        this.props.updateView('listView');
+      })
       .catch(function (error) {
         console.log(error);
       });
