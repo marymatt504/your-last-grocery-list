@@ -30,6 +30,9 @@ class List extends React.Component {
 
   handleSubmit(event) {
     console.log('this.state', this.state);
+    // NEXT: work on submitting new item in state to the db/server --- db method should check if already exists!
+    // after submitting item to server/db
+    // call function to fetch latest items 
     event.preventDefault();
   }
 
