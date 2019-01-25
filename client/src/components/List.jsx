@@ -29,8 +29,24 @@ class List extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('this.state', this.state);
+    // console.log('this.state', this.state);
     // NEXT: work on submitting new item in state to the db/server --- db method should check if already exists!
+    axios.post('/users', {
+      username: this.state.email,
+      password: this.state.password
+    })
+      .then(response => {
+        let user_id = response.data.rows[0].id;
+        this.props.updateUserId(user_id);
+      })
+      .then(() => {
+        this.props.updateView('listDashboard');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
     // after submitting item to server/db
     // call function to fetch latest items 
     event.preventDefault();

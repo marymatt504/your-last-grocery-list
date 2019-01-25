@@ -33,6 +33,20 @@ app.post('/lists', (req, res) => {
   })
 });
 
+app.post('/items', (req, res) => {
+
+  console.log('req.body', req.body);
+  let { name, list_id, category } = req.body;
+
+  db.addItem(name, list_id, category, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(201).send(results);
+    }
+  })
+});
+
 // app.get('/items', function (req, res) {
 //   items.selectAll(function (err, data) {
 //     if (err) {

@@ -25,7 +25,8 @@ CREATE TABLE items (
   frequency_count int NOT NULL DEFAULT 1,  
   need_to_buy BOOLEAN NOT NULL DEFAULT true,
   category varchar(50) NOT NULL,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (ID),
+  unique (name, list_id)
 );
 
 

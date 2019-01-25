@@ -60,4 +60,20 @@ const addList = (user_id, store_name, callback) => {
   });
 };
 
-module.exports = { addUser, addList };
+const addItem = (name, list_id, category, callback) => {
+
+  const queryStr = {
+    text: 'INSERT INTO items(name, list_id, category) VALUES ($1, $2, $3) ON CONFLICT (name, list_id) DO UPDATE SET frequency_count = items.frequency_count + 1, need_to_buy = true',
+    values: [name, list_id, category]
+  };
+
+  client.query(queryStr, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+module.exports = { addUser, addList, addItem };
