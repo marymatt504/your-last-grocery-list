@@ -31,25 +31,27 @@ class List extends React.Component {
   handleSubmit(event) {
     // console.log('this.state', this.state);
     // NEXT: work on submitting new item in state to the db/server --- db method should check if already exists!
-    axios.post('/users', {
-      username: this.state.email,
-      password: this.state.password
+    axios.post('/items', {
+      name: this.state.item_name,
+      list_id: this.props.list_id,
+      category: this.state.category
     })
       .then(response => {
-        let user_id = response.data.rows[0].id;
-        this.props.updateUserId(user_id);
-      })
-      .then(() => {
-        this.props.updateView('listDashboard');
+        // ***invoke method to fetch latest list of items
       })
       .catch(function (error) {
         console.log(error);
       });
-
-
-    // after submitting item to server/db
-    // call function to fetch latest items 
     event.preventDefault();
+  }
+
+  getItems() {
+    // axios request to get items from db
+    // ** remember to bind function in constructor
+  }
+
+  componentDidMount() {
+    // invoke method to fetch latest list
   }
 
   render() {
