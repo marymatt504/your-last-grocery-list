@@ -5,7 +5,7 @@ class PreviouslyPurchased extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      isPreviouslyPurchased: true,
     }
   }
 

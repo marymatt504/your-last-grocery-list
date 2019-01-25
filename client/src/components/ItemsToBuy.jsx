@@ -5,7 +5,7 @@ class ItemsToBuy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      isItemsToBuy: true,
     }
   }
 

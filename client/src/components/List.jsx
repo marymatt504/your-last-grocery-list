@@ -1,3 +1,4 @@
+// have access to list_id from this.props
 
 import React from 'react';
 const axios = require('axios');
@@ -11,9 +12,11 @@ class List extends React.Component {
     super(props);
     this.state = {
       // prioritize constant time lookup by itemId 
-      items: {
-        0: { name: '', need_to_buy: false, category: '' }
-      }
+      // items: {
+      //   0: { name: '', need_to_buy: false, category: 'select a category' }
+      // },
+      item_name: '',
+      category: 'select a category'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,27 +24,12 @@ class List extends React.Component {
   }
 
   handleChange(event) {
+    console.log('event.target.name', event.target.name);
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
-
-    axios.post('/items', {
-      store_name: this.state.store_name,
-      user_id: this.props.user_id
-    })
-      .then(function (response) {
-        console.log('list created! here is the list_id', respone.rows[0].id);
-        // need to get back from creating of the user, the userId
-        // this.props.updateUserId();
-      })
-      // .then(() => {
-      //   this.props.updateView('listView');
-      // })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    console.log('this.state', this.state);
     event.preventDefault();
   }
 
@@ -54,14 +42,29 @@ class List extends React.Component {
         <div className='listLogicContainer'>
           <ItemsToBuy />
           <PreviouslyPurchased />
+
           <form className='listLogicModule' onSubmit={this.handleSubmit}>
+            <div>Add new items to the list.</div>
             <label className='label'>
               <div>
-                {`Items to Purchase: `}
-                <input name='store_name' type="text" value={this.state.store_name} onChange={this.handleChange} />
+                {`Item: `}
+                <input name='item_name' type="text" value={this.state.item_name} onChange={this.handleChange} />
               </div>
             </label>
-            <input type="submit" value="Start adding items" />
+
+            <label className='label'>
+              <div>
+                {`Category: `}
+                <select value={this.state.category} onChange={this.handleChange} name='category'>
+                  <option value='produce'>Produce</option>
+                  <option value='dairy'>Dairy</option>
+                  <option value='meat'>Meat</option>
+                  <option value='inner_aisles'>Inner Aisles</option>
+                  <option value='other'>Other</option>
+                </select>
+              </div>
+            </label>
+            <input type="submit" value="Add item" />
           </form>
         </div>
       </div>

@@ -22,8 +22,8 @@ CREATE TABLE items (
   id SERIAL NOT NULL,
   name varchar(50) NOT NULL, 
   list_id int NOT NULL references lists(id),
-  frequency_count int NOT NULL DEFAULT 0,  
-  need_to_buy BOOLEAN NOT NULL,
+  frequency_count int NOT NULL DEFAULT 1,  
+  need_to_buy BOOLEAN NOT NULL DEFAULT true,
   category varchar(50) NOT NULL,
   PRIMARY KEY (ID)
 );
