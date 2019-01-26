@@ -47,15 +47,18 @@ app.post('/items', (req, res) => {
   })
 });
 
-// app.get('/items', function (req, res) {
-//   items.selectAll(function (err, data) {
-//     if (err) {
-//       res.sendStatus(500);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
+app.get('/lists/:list_id/items', function (req, res) {
+  let { list_id } = req.params;
+
+  console.log('listid items request for', list_id);
+  db.getItemsByListId(list_id, (err, results) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(results.rows);
+    }
+  });
+});
 
 app.listen(3000, function () {
   console.log('listening on port 3000!');

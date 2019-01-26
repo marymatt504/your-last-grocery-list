@@ -11,10 +11,13 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // prioritize constant time lookup by itemId 
+      // could prioritize constant time lookup by itemId 
       // items: {
       //   0: { name: '', need_to_buy: false, category: 'select a category' }
       // },
+      // items currently looks like... 
+      // [ { id: 1, name: 'milk', list_id: 1, frequency_count: 2, need_to_buy: true, category: 'dairy' }]
+      items: [],
       item_name: '',
       category: 'select a category'
     };
@@ -29,15 +32,17 @@ class List extends React.Component {
   }
 
   handleSubmit(event) {
-    // console.log('this.state', this.state);
-    // NEXT: work on submitting new item in state to the db/server --- db method should check if already exists!
     axios.post('/items', {
       name: this.state.item_name,
       list_id: this.props.list_id,
       category: this.state.category
     })
       .then(response => {
+        this.setState({ item_name: '', category: '' });
+      })
+      .then(response => {
         // ***invoke method to fetch latest list of items
+        this.getItems();
       })
       .catch(function (error) {
         console.log(error);
@@ -46,12 +51,18 @@ class List extends React.Component {
   }
 
   getItems() {
-    // axios request to get items from db
-    // ** remember to bind function in constructor
+    axios.get(`/lists/${this.props.list_id}/items`)
+      .then(response => {
+        console.log('response from getitems on componentdidmount:', response.data);
+        this.setState({ items: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   componentDidMount() {
-    // invoke method to fetch latest list
+    this.getItems();
   }
 
   render() {

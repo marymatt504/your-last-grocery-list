@@ -61,7 +61,7 @@ const addList = (user_id, store_name, callback) => {
 };
 
 const addItem = (name, list_id, category, callback) => {
-  // shoudl also consider that someone might try to add an item, when it's already on tehir toBuy list
+  // shoudl also consider that someone might try to add an item, when it's already on their toBuy list
   // in that case, would only want to updateFrequency if need_to_buy column is currently set to false
   const queryStr = {
     text: 'INSERT INTO items(name, list_id, category) VALUES ($1, $2, $3) ON CONFLICT (name, list_id) DO UPDATE SET frequency_count = items.frequency_count + 1, need_to_buy = true',
@@ -77,4 +77,20 @@ const addItem = (name, list_id, category, callback) => {
   });
 };
 
-module.exports = { addUser, addList, addItem };
+const getItemsByListId = (list_id, callback) => {
+  const queryStr = {
+    text: 'SELECT * from items WHERE list_id = $1',
+    values: [list_id]
+  };
+
+  client.query(queryStr, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+
+};
+
+module.exports = { addUser, addList, addItem, getItemsByListId };
