@@ -67,7 +67,6 @@ class List extends React.Component {
 
   render() {
 
-    // NOT YET TESTED 
     let itemsNeedToBuy = this.state.items.filter(item => {
       return item.need_to_buy = true;
     });

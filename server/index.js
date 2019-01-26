@@ -8,7 +8,6 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/users', (req, res) => {
   let { username, password } = req.body;
-
   db.addUser(username, password, (err, results) => {
     if (err) {
       res.sendStatus(500);
@@ -16,14 +15,11 @@ app.post('/users', (req, res) => {
       res.status(201).send(results);
     }
   });
-
 });
 
 app.post('/lists', (req, res) => {
-
-  console.log('req.body', req.body);
+  // console.log('req.body', req.body);
   let { user_id, store_name } = req.body;
-
   db.addList(user_id, store_name, (err, results) => {
     if (err) {
       res.sendStatus(500);
@@ -34,10 +30,7 @@ app.post('/lists', (req, res) => {
 });
 
 app.post('/items', (req, res) => {
-
-  console.log('req.body', req.body);
   let { name, list_id, category } = req.body;
-
   db.addItem(name, list_id, category, (err, results) => {
     if (err) {
       res.sendStatus(500);

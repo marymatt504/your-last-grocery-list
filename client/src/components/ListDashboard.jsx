@@ -20,7 +20,6 @@ class ListDashboard extends React.Component {
   }
 
   componentDidMount() {
-    // fetch lists by userId
     axios.get(`/users/${this.props.user_id}/lists`)
       .then(response => {
         this.setState({ lists: response.data });
