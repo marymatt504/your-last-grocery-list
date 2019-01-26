@@ -20,8 +20,8 @@ class SignUpForm extends React.Component {
 
   handleSubmit(event) {
     axios.post('/users', {
-      username: this.state.email,
-      password: this.state.password
+      username: this.state.email.toLowerCase(),
+      password: this.state.password.toLowerCase()
     })
       .then(response => {
         let user_id = response.data.rows[0].id;

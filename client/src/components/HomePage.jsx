@@ -4,7 +4,7 @@ import SignUpForm from './SignUpForm.jsx';
 
 let HomePage = (props) => (
   <div>
-    <Nav />
+    <Nav updateUserId={props.updateUserId} updateView={props.updateView} />
     <div className='intro'>
       <h2>What's the problem with grocery lists?</h2>
       <p>I don't know about you, but I'm always making a new one, over and over, struggling to remember what it is that I usually buy at Whole Foods -- oh and what is it we always forget when we're at Costco?</p>

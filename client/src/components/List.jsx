@@ -67,12 +67,21 @@ class List extends React.Component {
 
   render() {
 
+    // NOT YET TESTED 
+    let itemsNeedToBuy = this.state.items.filter(item => {
+      return item.need_to_buy = true;
+    });
+
+    let itemsPreviouslyPurchased = this.state.items.filter(item => {
+      return item.need_to_buy = false;
+    });
+
     return (
       <div>
         <Nav />
         <div className='heading'>{`${this.props.capitalize(this.props.store_name)} Shopping List`}</div>
         <div className='listLogicContainer'>
-          <ItemsToBuy />
+          <ItemsToBuy items={itemsNeedToBuy} />
           <PreviouslyPurchased />
 
           <form className='listLogicModule' onSubmit={this.handleSubmit}>

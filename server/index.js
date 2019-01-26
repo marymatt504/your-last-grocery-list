@@ -60,6 +60,21 @@ app.get('/lists/:list_id/items', function (req, res) {
   });
 });
 
+app.get('/users/:email', function (req, res) {
+  let { email } = req.params;
+  email = email.toLowerCase();
+
+  console.log('email:', email);
+
+  db.getUserByEmail(email, (err, results) => {
+    if (err) {
+      res.status(500).send(err.message);
+    } else {
+      res.status(200).send(results.rows);
+    }
+  });
+});
+
 app.listen(3000, function () {
   console.log('listening on port 3000!');
 });

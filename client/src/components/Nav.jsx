@@ -1,4 +1,5 @@
 import React from 'react';
+const axios = require('axios');
 
 class Nav extends React.Component {
 
@@ -23,7 +24,16 @@ class Nav extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    axios.get(`/users/${this.state.email.toLowerCase()}`)
+      .then(response => {
+        if (response.data[0].password === this.state.password.toLowerCase()) {
+          this.props.updateUserId(response.data[0].id);
+          this.props.updateView('listDashboard');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     event.preventDefault();
   }
 
@@ -31,7 +41,7 @@ class Nav extends React.Component {
     return (
       <div className='navBar'>
         <div className='logo'>
-          <img src="https://s3-us-west-1.amazonaws.com/your-last-grocery-list/grocery.png" alt="grocery bag icon"/>
+          <img src="https://s3-us-west-1.amazonaws.com/your-last-grocery-list/grocery.png" alt="grocery bag icon" />
           <div>
             <div>Your Last</div>
             <div>Grocery List</div>

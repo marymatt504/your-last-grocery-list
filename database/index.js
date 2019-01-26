@@ -93,4 +93,20 @@ const getItemsByListId = (list_id, callback) => {
 
 };
 
-module.exports = { addUser, addList, addItem, getItemsByListId };
+const getUserByEmail = (email, callback) => {
+  const queryStr = {
+    text: 'SELECT * from users WHERE username = $1',
+    values: [email]
+  };
+
+  client.query(queryStr, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
+
+};
+
+module.exports = { addUser, addList, addItem, getItemsByListId, getUserByEmail };
