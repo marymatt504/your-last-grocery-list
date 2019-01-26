@@ -50,7 +50,7 @@ class App extends React.Component {
       return <HomePage updateUserId={this.updateUserId} updateView={this.updateView} />
     }
     if (this.state.view === 'listDashboard') {
-      return <ListDashboard updateView={this.updateView} />
+      return <ListDashboard updateView={this.updateView} user_id={this.state.user_id} updateListId={this.updateListId} updateStoreName={this.updateStoreName} />
     }
     if (this.state.view === 'createList') {
       return <CreateListForm user_id={this.state.user_id} updateListId={this.updateListId} updateStoreName={this.updateStoreName} updateView={this.updateView} />

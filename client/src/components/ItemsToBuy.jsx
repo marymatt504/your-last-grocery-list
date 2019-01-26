@@ -10,7 +10,7 @@ class ItemsToBuy extends React.Component {
   }
 
   render() {
-    console.log(props.items);
+    console.log(this.props.items);
     return (
       <div className='listLogicModule'>Items to buy will go here.</div>
     )

@@ -75,6 +75,18 @@ app.get('/users/:email', function (req, res) {
   });
 });
 
+app.get('/users/:userId/lists', function (req, res) {
+  let { userId } = req.params;
+
+  db.getListsByUserId(userId, (err, results) => {
+    if (err) {
+      res.status(500).send(err.message);
+    } else {
+      res.status(200).send(results.rows);
+    }
+  });
+});
+
 app.listen(3000, function () {
   console.log('listening on port 3000!');
 });

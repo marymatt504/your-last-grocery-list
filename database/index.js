@@ -90,7 +90,21 @@ const getItemsByListId = (list_id, callback) => {
       callback(null, results);
     }
   });
+};
 
+const getListsByUserId = (user_id, callback) => {
+  const queryStr = {
+    text: 'SELECT * from lists WHERE user_id = $1',
+    values: [user_id]
+  };
+
+  client.query(queryStr, (error, results) => {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, results);
+    }
+  });
 };
 
 const getUserByEmail = (email, callback) => {
@@ -109,4 +123,4 @@ const getUserByEmail = (email, callback) => {
 
 };
 
-module.exports = { addUser, addList, addItem, getItemsByListId, getUserByEmail };
+module.exports = { addUser, addList, addItem, getItemsByListId, getUserByEmail, getListsByUserId };
