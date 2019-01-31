@@ -1,5 +1,6 @@
 import React from 'react';
 const axios = require('axios');
+const util = require('../../../database/hashUtils.js');
 
 class Nav extends React.Component {
 
@@ -24,12 +25,22 @@ class Nav extends React.Component {
   }
 
   handleSubmit(event) {
+
     axios.get(`/users/${this.state.email.toLowerCase()}`)
       .then(response => {
-        if (response.data[0].password === this.state.password.toLowerCase()) {
+
+        let salt = response.data[0].salt;
+        let storedPassword = response.data[0].password;
+
+        if (util.compareHash(this.state.password.toLowerCase(), storedPassword, salt)) {
           this.props.updateUserId(response.data[0].id);
           this.props.updateView('listDashboard');
         }
+
+        // if (response.data[0].password === this.state.password.toLowerCase()) {
+        //   this.props.updateUserId(response.data[0].id);
+        //   this.props.updateView('listDashboard');
+        // }
       })
       .catch(function (error) {
         console.log(error);
