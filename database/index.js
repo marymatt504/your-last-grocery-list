@@ -1,6 +1,7 @@
 const db = './credentials.js';
 
 const { Pool, Client } = require('pg');
+const utils = require('./hashUtils.js');
 
 const pool = new Pool({
   user: db.user,
@@ -31,9 +32,13 @@ client.connect();
 //***** DATABASE METHODS **********************************************/
 
 const addUser = (username, password, callback) => {
+
+  let salt = utils.createRandom32String();
+  let hash = utils.createHash(password, salt);
+
   const queryStr = {
-    text: 'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id',
-    values: [username, password]
+    text: 'INSERT INTO users (username, password, salt) VALUES ($1, $2, $3) RETURNING id',
+    values: [username, hash, salt]
   };
 
   client.query(queryStr, (error, results) => {

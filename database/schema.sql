@@ -6,8 +6,9 @@ CREATE DATABASE your_last_grocery_list with owner = marymatthews;
 
 CREATE TABLE users (
   id SERIAL NOT NULL,
-  username varchar(50) NOT NULL UNIQUE,
-  password varchar(50) NOT NULL,
+  username varchar(64) NOT NULL UNIQUE,
+  password varchar(64) NOT NULL,
+  salt varchar(64),
   PRIMARY KEY (ID)
 );
 

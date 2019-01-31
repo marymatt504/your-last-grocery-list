@@ -38,6 +38,12 @@ class Nav extends React.Component {
   }
 
   render() {
+
+
+    // when not on home view, add className to navBarNotHome that makes
+    // nav bar around 2-% or less of the screen height 
+
+
     return (
       <div className='navBar'>
         <div className='logo'>

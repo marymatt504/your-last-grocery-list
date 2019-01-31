@@ -53,7 +53,7 @@ class SignUpForm extends React.Component {
             <input name='password' type="text" value={this.state.password} onChange={this.handleChange} />
           </div>
         </label>
-        <input type="submit" value="Sign up for free" />
+        <input type="submit" className="formComponent" value="Sign up for free" />
       </form>
     );
   }

@@ -10,6 +10,7 @@ app.post('/users', (req, res) => {
   let { username, password } = req.body;
   db.addUser(username, password, (err, results) => {
     if (err) {
+      console.log(err.message);
       res.sendStatus(500);
     } else {
       res.status(201).send(results);
