@@ -45,7 +45,7 @@ class ListDashboard extends React.Component {
         Which list would you like to see?
         <div>{listButtons}</div>
         <div>Don't have a list yet for where you want to shop?</div>
-        <button onClick={this.props.updateView.bind(this, 'createList')}>Create a list for a new store.</button>
+        <button onClick={this.props.updateView.bind(this, 'createList')} className='button'>Create a list for a new store.</button>
       </div>
     )
   }

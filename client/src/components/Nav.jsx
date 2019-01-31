@@ -32,15 +32,10 @@ class Nav extends React.Component {
         let salt = response.data[0].salt;
         let storedPassword = response.data[0].password;
 
-        if (util.compareHash(this.state.password.toLowerCase(), storedPassword, salt)) {
+        if (util.compareHash(this.state.password, storedPassword, salt)) {
           this.props.updateUserId(response.data[0].id);
           this.props.updateView('listDashboard');
         }
-
-        // if (response.data[0].password === this.state.password.toLowerCase()) {
-        //   this.props.updateUserId(response.data[0].id);
-        //   this.props.updateView('listDashboard');
-        // }
       })
       .catch(function (error) {
         console.log(error);
